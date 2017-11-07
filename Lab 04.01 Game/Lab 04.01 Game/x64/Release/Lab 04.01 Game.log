@@ -1,0 +1,3 @@
+﻿  Main.cpp
+  Window.cpp
+LINK : fatal error LNK1181: не удается открыть входной файл "SDLmain.lib"
