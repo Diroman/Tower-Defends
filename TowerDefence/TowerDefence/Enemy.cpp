@@ -1,13 +1,32 @@
 #include "stdafx.h"
 #include "Enemy.h"
+#include "Castle.h"
 
 
 Cell::Cell(int type) {
 	_Type = type;
+	next._x = -1;
+	next._y = -1;
 }
 
 Cell::~Cell() {
 
+}
+
+void Cell::SetNext(Point p) {
+	next = p;
+}
+
+void Cell::SetX(int x) {
+	next._x = x;
+}
+
+void Cell::SetY(int y) {
+	next._y = y;
+}
+
+Point Cell::GetNext() {
+	return next;
 }
 
 int Cell::GetType() {

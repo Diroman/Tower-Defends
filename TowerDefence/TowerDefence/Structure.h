@@ -17,6 +17,7 @@ private:
 
 public:
 	Lair(time_t, Enemy*, int);
+	void SetStartPosition(Point);
 	bool CheckNumberOfEnemy();
 	bool CheckTime();
 	EnemyPoint* ReleaseEnemy();

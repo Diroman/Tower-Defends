@@ -13,7 +13,7 @@ Lair::Lair(time_t Time, Enemy *Pattern, int NumberOfEnemy) :Cell(2) {
 	_Time = Time;
 	_Pattern = new Enemy(Pattern);
 	_NumberOfEnemy = NumberOfEnemy;
-	_StartTime = time(NULL)/*SDL_GetTicks()*/;
+	_StartTime = time(NULL);
 }
 
 bool Lair::CheckTime() {
@@ -24,9 +24,14 @@ bool Lair::CheckNumberOfEnemy() {
 	return	_NumberOfEnemy > 0 ? true : false;
 }
 
+void Lair::SetStartPosition(Point xy) {
+	_xy = xy;
+}
+
 EnemyPoint* Lair::ReleaseEnemy() {
-	if (CheckTime()) {
+	if (CheckTime() && (_NumberOfEnemy > 0)) {
 		_StartTime = time(NULL);
+		_NumberOfEnemy--;
 		return new EnemyPoint(_Pattern, _xy);
 	}
 	return nullptr;

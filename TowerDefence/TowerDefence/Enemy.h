@@ -2,13 +2,20 @@
 #ifndef _Enemy_H_
 #include "Effect.h"
 
+struct Point;
+
 class Cell {
 
 private:
 	int _Type;
+	Point next;
 public:
 	Cell(int);
 	virtual ~Cell();
+	void SetNext(Point);
+	void SetX(int);
+	void SetY(int);
+	Point GetNext();
 	int GetType();
 };
 

@@ -4,12 +4,25 @@
 using namespace std;
 
 
-Point::Point() {
+Point::Point()
+{
 	_x = -1;
 	_y = -1;
 }
 
+Point::Point(int x, int y) {
+	_x = x;
+	_y = y;
+}
+
+bool operator ==(const Point &l, const Point &r) {
+	if ((l._x == r._x) && (l._y == r._y))
+		return true;
+	return false;
+}
+
 EnemyPoint::EnemyPoint() {
+
 	_Enemy = nullptr;
 }
 
@@ -19,7 +32,7 @@ EnemyPoint::EnemyPoint(Enemy *en, Point xy) {
 	_Enemy = en;
 }
 
-Castle::Castle(string Name, double HP_Max, double Money) :
+Castle::Castle(string Name, double HP_Max, int Money) :
 	Cell(1), _HP_Max(HP_Max), _Money(Money)
 {
 	_Name = Name;

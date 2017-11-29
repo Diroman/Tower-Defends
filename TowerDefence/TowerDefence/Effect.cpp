@@ -43,7 +43,7 @@ Freeze* Freeze::Clone() {
 
 bool Freeze::MakeDamage(Enemy *en) {
 
-	int math;
+	double math;
 	if (!CheckTime()) {
 		math = en->GetSpeed() / (1 - _Value);
 		en->ChangeSpeed(_Value);

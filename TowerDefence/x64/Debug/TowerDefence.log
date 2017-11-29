@@ -1,3 +1,9 @@
 ﻿  LandSpace.cpp
-d:\project\3 семестр\towerdefence\towerdefence\towerdefence\landspace.cpp(81): warning C4715: LandSpace::CheckBoard: значение возвращается не при всех путях выполнения
-  TowerDefence.vcxproj -> D:\Project\3 семестр\TowerDefence\TowerDefence\x64\Debug\TowerDefence.lib
+  Effect.cpp
+  Castle.cpp
+  Создание кода...
+d:\project\github\towerdefence\towerdefence\effect.cpp(111): warning C4715: Weakness::MakeDamage: значение возвращается не при всех путях выполнения
+d:\project\github\towerdefence\towerdefence\landspace.cpp(81): warning C4715: LandSpace::CheckBoard: значение возвращается не при всех путях выполнения
+  Пропуск... (изменения не обнаружены)
+  Structure.cpp
+  TowerDefence.vcxproj -> D:\Project\GitHub\TowerDefence\x64\Debug\TowerDefence.lib

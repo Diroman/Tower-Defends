@@ -2,15 +2,17 @@
 #ifndef _Game_H_
 #include <string>
 #include "../TowerDefence/Enemy.h"
-class Enemy;
+//class Enemy;
 
 using namespace std;
 
-struct Point {
+struct Point{
 	int _x;
 	int _y;
 
 	Point();
+	Point(int, int);
+	friend bool operator == (const Point&, const Point&);
 };
 
 struct EnemyPoint {
@@ -30,7 +32,7 @@ private:
 	int _Money;
 
 public:
-	Castle(string, double, double); // HP  Money
+	Castle(string, double, int); // HP  Money
 	Castle(const Castle &st);
 	string GetName();
 	double GetHP();
