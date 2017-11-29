@@ -1,0 +1,11 @@
+﻿  stdafx.cpp
+  Castle.cpp
+Castle.cpp(10): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  Effect.cpp
+Effect.cpp(31): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+Effect.cpp(36): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+  Enemy.cpp
+  LandSpace.cpp
+  Structure.cpp
+Structure.cpp(38): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
+  TowerDefence.vcxproj -> D:\Project\3 семестр\TowerDefence\TowerDefence\x64\Release\TowerDefence.lib

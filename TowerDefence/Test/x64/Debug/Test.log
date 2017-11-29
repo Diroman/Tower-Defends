@@ -1,0 +1,10 @@
+﻿  Test.cpp
+d:\project\3 семестр\towerdefence\towerdefence\test\test.cpp(9): warning C4003: не хватает фактических параметров для макроопределения "TEST"
+d:\project\3 семестр\towerdefence\towerdefence\test\test.cpp(26): warning C4003: не хватает фактических параметров для макроопределения "TEST"
+d:\project\3 семестр\towerdefence\towerdefence\test\test.cpp(45): warning C4003: не хватает фактических параметров для макроопределения "TEST"
+d:\project\3 семестр\towerdefence\towerdefence\test\test.cpp(59): warning C4996: '_sleep': This function or variable has been superceded by newer library or operating system functionality. Consider using Sleep instead. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdlib.h(1282): note:  см. объявление "_sleep"
+d:\project\3 семестр\towerdefence\towerdefence\test\test.cpp(66): warning C4003: не хватает фактических параметров для макроопределения "TEST"
+gtestd.lib(gtest-all.obj) : warning LNK4099: "gtest.pdb" PDB эх эрщфхэ ё "gtestd.lib(gtest-all.obj)" шыш эр "D:\Project\3 ёхьхёЄЁ\TowerDefence\TowerDefence\x64\Debug\gtest.pdb"; ъюьяюэютър юс·хъЄр т√яюыэ хЄё  ъръ яЁш юЄёєЄёЄтшш юЄырфюўэ√ї фрээ√ї
+  Test.vcxproj -> D:\Project\3 семестр\TowerDefence\TowerDefence\x64\Debug\Test.exe
+  Test.vcxproj -> D:\Project\3 семестр\TowerDefence\TowerDefence\x64\Debug\Test.pdb (Partial PDB)

@@ -1,0 +1,14 @@
+﻿  Structure.cpp
+d:\project\3 семестр\towerdefence\towerdefence\towerdefence\structure.cpp(37): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
+  LandSpace.cpp
+  Enemy.cpp
+  Castle.cpp
+d:\project\3 семестр\towerdefence\towerdefence\towerdefence\castle.cpp(9): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
+  Компиляция...
+  Effect.cpp
+d:\project\3 семестр\towerdefence\towerdefence\towerdefence\effect.cpp(48): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+d:\project\3 семестр\towerdefence\towerdefence\towerdefence\effect.cpp(53): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
+d:\project\3 семестр\towerdefence\towerdefence\towerdefence\effect.cpp(111): warning C4715: Weakness::MakeDamage: значение возвращается не при всех путях выполнения
+  TowerDefence.vcxproj -> D:\Project\3 семестр\TowerDefence\TowerDefence\x64\Debug\TowerDefence.lib
