@@ -26,12 +26,12 @@ private:
 
 public:
 	LandSpace(Point);
-/*	bool IncreaseSize(int, int);
-	bool DecreaseSize(int, int);
-*/	bool AddTower(Point, Structure*);
+	bool ChangeSize(int, int);
+	bool AddTower(Point, Structure*);
 	bool AddLair(Point, Lair*);
 	void AddEnemy(EnemyPoint);
-	void AddCastle(Point, Castle*);
+	bool AddRoad(Point);
+	bool AddCastle(Point, Castle*);
 	void DeleteTower(Point);
 	void DeleteLair(Point);
 	void DeleteCastle();
@@ -39,7 +39,7 @@ public:
 	bool CheckBoard();
 	bool Process();				// ход 
 	void DoStep(EnemyPoint*);	// перемещение врага
-	void CauseDamage(Structure*);			// удар башен
+	void CauseDamage(Structure*, Point);			// удар башен
 	bool FindWay();		// путь до замка
 };
 #endif

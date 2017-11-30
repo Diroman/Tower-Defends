@@ -29,6 +29,10 @@ Point Cell::GetNext() {
 	return next;
 }
 
+void Cell::SetType(int type) {
+	_Type = type;
+}
+
 int Cell::GetType() {
 	return _Type;
 }
@@ -77,15 +81,18 @@ bool Enemy::CheckHP() {
 void Enemy::SetEffect(Effect *ef) {
 
 	int i = 0;
+	bool f = true;
 	while (i++ < 3)
 		if (_EffectTable[i]->GetType() == ef->GetType())
 			return;
 	i = 0;
-	while (i++ < 3)
+	while (f && (i++ < 3))
 		if (!_EffectTable[i]) {
 			_EffectTable[i] = ef;
-			return;
+			f = false;
 		}
+	if (f)
+		delete ef;
 }
 
 void Enemy::ApplyEffect() {
@@ -94,8 +101,10 @@ void Enemy::ApplyEffect() {
 	bool fl;
 	while (_EffectTable[i] || i++ < 3) {
 		fl = _EffectTable[i]->MakeDamage(this);		// true - эффект ещё действует
-		if (!fl)
-			_EffectTable[i] = nullptr;				// нужно ли удалять эффект? 
+		if (!fl) {
+			delete _EffectTable[i];
+			_EffectTable[i] = nullptr;
+		}
 	}
 }
 

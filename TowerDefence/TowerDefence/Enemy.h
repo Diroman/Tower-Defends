@@ -16,6 +16,7 @@ public:
 	void SetX(int);
 	void SetY(int);
 	Point GetNext();
+	void SetType(int);
 	int GetType();
 };
 

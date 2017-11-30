@@ -28,6 +28,7 @@ protected:
 	int _level;
 	int _StartTime;
 	time_t _Speed;
+	int _Type;
 	int _Char_Table[3]; 	// Cost, radius, damage
 
 public:
@@ -35,8 +36,11 @@ public:
 	bool CheckTime();
 	void UpLevel();
 	virtual void ApplyDamage(Enemy*) = 0;
+	int GetCost();
+	int GetRadius();
 	//
 	int GetLevel();
+	int GetType();
 	int* GetChar();
 	time_t GetSpeed();
 	//

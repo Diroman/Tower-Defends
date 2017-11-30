@@ -54,13 +54,24 @@ void Structure::UpLevel() {
 	_level++;
 }
 
+int Structure::GetType() {
+	return _Type;
+}
+
 int Structure::GetLevel() {
 	return _level;
 }
 
+int Structure::GetCost() {
+	return _Char_Table[0];
+}
+
+int Structure::GetRadius() {
+	return _Char_Table[1];
+}
 
 SimpleTower::SimpleTower(int tab[3], time_t tm) : Structure(tab, tm, 6) {
-
+	_Type = 6;
 }
 
 void SimpleTower::ApplyDamage(Enemy *enemy) {
@@ -70,6 +81,7 @@ void SimpleTower::ApplyDamage(Enemy *enemy) {
 
 MagicTower::MagicTower(int tb[3], time_t tm, Effect *ef) : Structure(tb, tm, 7) {
 	_TowerEffect = ef;
+	_Type = 7;
 }
 
 void MagicTower::ApplyDamage(Enemy *enemy) {
@@ -79,6 +91,7 @@ void MagicTower::ApplyDamage(Enemy *enemy) {
 
 Trap::Trap(int tb[3], time_t tm, Effect *ef) : Structure(tb, tm, 8) {
 	_TrapEffect = ef;
+	_Type = 8;
 }
 
 void Trap::ApplyDamage(Enemy *enemy) {

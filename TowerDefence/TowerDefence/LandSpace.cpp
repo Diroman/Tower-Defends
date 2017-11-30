@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "LandSpace.h"
+#include <cmath>
 
 // Cell Type
 #define _Castle 1
@@ -21,12 +22,24 @@ LandSpace::LandSpace(Point size)
 	KingCastle._y = -1;
 }
 
+bool LandSpace::ChangeSize(int w, int h) {
+
+	for (int i = 0; i < _size._x; i++)
+		for (int j = 0; j < _size._y; j++)
+			delete Board[i][j];
+
+	for (int i = 0; i < w; i++)
+		for (int j = 0; j < h; j++)
+			Board[i][j] = new Cell(3);
+}
+
 bool LandSpace::AddTower(Point xy, Structure *tower) {
 	if (Board[xy._x][xy._y]->GetType() != 3)
 		return false;
 	TowerTable.push_back(xy);
 	delete Board[xy._x][xy._y];
 	Board[xy._x][xy._y] = tower;
+	Board[xy._x][xy._y]->SetType(tower->GetType());
 	return true;
 }
 
@@ -36,6 +49,7 @@ bool LandSpace::AddLair(Point xy, Lair *lair) {
 	LairTable.push_back(xy);
 	delete Board[xy._x][xy._y];
 	Board[xy._x][xy._y] = lair;
+	Board[xy._x][xy._y]->SetType(_Lair);
 	return true;
 }
 
@@ -43,14 +57,27 @@ void LandSpace::AddEnemy(EnemyPoint EnPoint) {
 	EnemyTable.push_back(EnPoint);
 }
 
-void LandSpace::AddCastle(Point xy, Castle *castle) {
+bool LandSpace::AddRoad(Point xy) {
+	if (Board[xy._x][xy._y]->GetType() != 3)
+		return false;
+	delete Board[xy._x][xy._y];
+	Board[xy._x][xy._y] = new Cell(_Road);
+	return true;
+}
+
+bool LandSpace::AddCastle(Point xy, Castle *castle) {
+	if (Board[xy._x][xy._y]->GetType() != 3)
+		return false;
 	KingCastle = xy;
+	delete Board[xy._x][xy._y];
 	Board[xy._x][xy._y] = castle;
+	Board[xy._x][xy._y]->SetType(_Castle);
+	return true;
 }
 
 void LandSpace::DeleteTower(Point xy){
 	for (int i = 0; i < TowerTable.size(); i++) 
-		if ((TowerTable[i]._x == xy._x) && (TowerTable[i]._y == xy._y)) {
+		if (TowerTable[i] == xy) {
 			delete Board[xy._x][xy._y];
 			Board[xy._x][xy._y] = new Cell(3);
 			TowerTable.erase(TowerTable.begin() + i);
@@ -59,7 +86,7 @@ void LandSpace::DeleteTower(Point xy){
 
 void LandSpace::DeleteLair(Point xy) {
 	for (int i = 0; i < LairTable.size(); i++)
-		if ((LairTable[i]._x == xy._x) && (LairTable[i]._y == xy._y)) {
+		if (LairTable[i] == xy) {
 			delete Board[xy._x][xy._y];
 			Board[xy._x][xy._y] = new Cell(3);
 			LairTable.erase(TowerTable.begin() + i);
@@ -68,13 +95,14 @@ void LandSpace::DeleteLair(Point xy) {
 
 void LandSpace::DeleteCastle() {
 	delete Board[KingCastle._x][KingCastle._y]; 
+	Board[KingCastle._x][KingCastle._y] = new Cell(3);
 	KingCastle._x = -1;
 	KingCastle._y = -1;
 }
 
 void LandSpace::KillEnemy(Point xy) {
 	for (int i = 0; i < EnemyTable.size(); i++)
-		if ((EnemyTable[i]._xy._x == xy._x) && (EnemyTable[i]._xy._y == xy._y)) {
+		if (EnemyTable[i]._xy == xy) {
 			delete EnemyTable[i]._Enemy;
 			EnemyTable.erase(EnemyTable.begin() + i);
 		}
@@ -116,7 +144,7 @@ bool LandSpace::Process() {
 
 	for (i = 0; i < TowerTable.size(); i++) {
 		tower = dynamic_cast <Structure*> (Board[LairTable[i]._x][LairTable[i]._y]);
-		CauseDamage(tower);
+		CauseDamage(tower, TowerTable[i]);
 	}
 
 	return true;
@@ -124,10 +152,31 @@ bool LandSpace::Process() {
 
 void LandSpace::DoStep(EnemyPoint *enemy) {
 	
+	Point step;
+	Castle *castle;
+
+	step = Board[enemy->_xy._x][enemy->_xy._y]->GetNext();
+	//
+	enemy->_xy = step;
+	// изменится для плавного перемещения
+	if (step == KingCastle) {
+		castle = dynamic_cast<Castle*>(Board[KingCastle._x][KingCastle._y]);
+		castle->SubHP(enemy->_Enemy->GetHP());
+	}
 }
 
-void LandSpace::CauseDamage(Structure *tower) {
+void LandSpace::CauseDamage(Structure *tower, Point xy) {
 
+	Point enemy;
+	vector <EnemyPoint> EnPoint;
+	int radius = tower->GetRadius();
+
+	for (int i = 0; i < EnemyTable.size(); i++) {
+		enemy = EnemyTable[i]._xy;
+		if (pow(enemy._x - xy._x, 2) + pow(enemy._y - xy._y, 2) < radius) {
+			EnPoint.push_back(EnemyTable[i]);
+		}
+	}
 }
 
 bool LandSpace::FindWay() {
@@ -159,13 +208,18 @@ bool LandSpace::FindWay() {
 			p._y = p._y + 1;
 			f = true;
 		}
+		
 		if (!f) return false;
 		f = false;
 
 		while (!(p == KingCastle) && !f) {
 			f = true;
-			if (Board[p._x][p._y]->GetNext()._x != -1)
+			if (Board[p._x][p._y]->GetNext()._x != -1) {
+				p = KingCastle;
+				f = false;
 				break;
+			}
+
 			if (p._x && (Board[p._x - 1][p._y]->GetType() == _Road) && !(Board[p._x - 1][p._y]->GetNext() == p)) {
 				Board[p._x][p._y]->SetX(p._x - 1);
 				Board[p._x][p._y]->SetY(p._y);
@@ -195,6 +249,7 @@ bool LandSpace::FindWay() {
 				p._y = Board[p._x][p._y]->GetNext()._y;
 			}
 		}
+
 		if (f)
 			return false;
 	}
