@@ -1,40 +1,16 @@
 #include "stdafx.h"
 #include "Enemy.h"
-#include "Castle.h"
 
 
-Cell::Cell(int type) {
-	_Type = type;
-	next._x = -1;
-	next._y = -1;
+EnemyPoint::EnemyPoint() {
+
+	_Enemy = nullptr;
 }
 
-Cell::~Cell() {
-
-}
-
-void Cell::SetNext(Point p) {
-	next = p;
-}
-
-void Cell::SetX(int x) {
-	next._x = x;
-}
-
-void Cell::SetY(int y) {
-	next._y = y;
-}
-
-Point Cell::GetNext() {
-	return next;
-}
-
-void Cell::SetType(int type) {
-	_Type = type;
-}
-
-int Cell::GetType() {
-	return _Type;
+EnemyPoint::EnemyPoint(Enemy *en, Point xy) {
+	_xy._x = xy._x;
+	_xy._y = xy._y;
+	_Enemy = en;
 }
 
 
@@ -61,8 +37,7 @@ Enemy::Enemy(Enemy *en) {
 }
 
 Enemy::Enemy(int HP_Max, int Speed, int Money) :
-	 _HP_Max(HP_Max), _Speed(Speed), _Money(Money) {
-
+	 _HP_Max(HP_Max), _HP(_HP_Max), _Speed(Speed), _Money(Money) {
 }
 
 void Enemy::ChangeSpeed(double Speed) {

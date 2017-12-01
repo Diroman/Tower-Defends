@@ -1,24 +1,7 @@
 #pragma once
 #ifndef _Enemy_H_
 #include "Effect.h"
-
-struct Point;
-
-class Cell {
-
-private:
-	int _Type;
-	Point next;
-public:
-	Cell(int);
-	virtual ~Cell();
-	void SetNext(Point);
-	void SetX(int);
-	void SetY(int);
-	Point GetNext();
-	void SetType(int);
-	int GetType();
-};
+#include "Cel.h"
 
 class Enemy {
 
@@ -48,4 +31,11 @@ public:
 	//
 };
 
-#endif // !_Enemy_H_
+struct EnemyPoint {
+	Point _xy;
+	Enemy *_Enemy;
+
+	EnemyPoint();
+	EnemyPoint(Enemy*, Point);
+};
+#endif

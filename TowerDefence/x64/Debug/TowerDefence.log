@@ -1,9 +1,12 @@
-﻿  LandSpace.cpp
-  Effect.cpp
-  Castle.cpp
+﻿  Castle.cpp
   Создание кода...
-d:\project\github\towerdefence\towerdefence\effect.cpp(111): warning C4715: Weakness::MakeDamage: значение возвращается не при всех путях выполнения
-d:\project\github\towerdefence\towerdefence\landspace.cpp(81): warning C4715: LandSpace::CheckBoard: значение возвращается не при всех путях выполнения
-  Пропуск... (изменения не обнаружены)
+  Компиляция...
   Structure.cpp
+d:\project\github\towerdefence\towerdefence\structure.cpp(42): warning C4244: =: преобразование "time_t" в "int", возможна потеря данных
+  LandSpace.cpp
+  Enemy.cpp
+  Создание кода...
+d:\project\github\towerdefence\towerdefence\landspace.cpp(119): warning C4715: LandSpace::CheckBoard: значение возвращается не при всех путях выполнения
+  Пропуск... (изменения не обнаружены)
+  Effect.cpp
   TowerDefence.vcxproj -> D:\Project\GitHub\TowerDefence\x64\Debug\TowerDefence.lib

@@ -1,18 +1,13 @@
 #pragma once
 #ifndef _LandSpace_H_
-#include "../TowerDefence/Effect.h"
-#include "../TowerDefence/Enemy.h"
-#include "../TowerDefence/Structure.h"
-#include "../TowerDefence/Castle.h"
+#include "Cel.h"
+#include "Enemy.h"
+#include "Effect.h"
+#include "Structure.h"
 #include <vector>
 
 
 using namespace std;
-
-class Road : public Cell {
-	bool fl;
-	Point Next;
-};
 
 class LandSpace
 {
@@ -37,9 +32,9 @@ public:
 	void DeleteCastle();
 	void KillEnemy(Point);
 	bool CheckBoard();
-	bool Process();				// ход 
-	void DoStep(EnemyPoint*);	// перемещение врага
-	void CauseDamage(Structure*, Point);			// удар башен
-	bool FindWay();		// путь до замка
+	bool Process();							// ход 
+	void DoStep(EnemyPoint*);				// перемещение врага
+	void CauseDamage(Structure*, Point);	// удар башен
+	bool FindWay();							// путь до замка
 };
 #endif

@@ -3,11 +3,12 @@
 #include "../TowerDefence/Effect.h"
 #include "../TowerDefence/Enemy.h"
 #include "../TowerDefence/Structure.h"
-#include "../TowerDefence/Castle.h"
+#include "../TowerDefence/Cel.h"
 #include "../TowerDefence/LandSpace.h"
 
 TEST(oCastle) {
-	Castle A(string("My"), 500, 300);
+	std::string a("My");
+	Castle A(a, 500.0, 300);
 
 	ASSERT_EQ(500, A.GetHP());
 	ASSERT_TRUE(A.SubHP(100));
